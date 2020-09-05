@@ -1,6 +1,6 @@
 # workout_capture
 
-A flutter project to show unhandled exception errors being thrown when try to login user. 
+A flutter project to show unhandled exception errors being thrown when try to login user.
 
 ## Getting Started
 

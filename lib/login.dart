@@ -1,4 +1,5 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
@@ -27,7 +28,6 @@ class _TextFieldExampleState extends State<TextFieldExample> {
   final _password = StreamController<String>();
   bool hasError = false;
   String errorString;
-  Future<String> futureString;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,14 +103,12 @@ class _TextFieldExampleState extends State<TextFieldExample> {
               })),
     );
   }
-  //return future string when there is error with the sign in otherwise return success future string 
-  Future<String> _signInWithEmailAndPassword(BuildContext context,AsyncSnapshot<String> userSnapshot,AsyncSnapshot<String> passwordSnapshot) async {
+  Future<void> _signInWithEmailAndPassword(BuildContext context,AsyncSnapshot<String> userSnapshot,AsyncSnapshot<String> passwordSnapshot) async {
     try {
       final auth = Provider.of<AuthService>(context, listen: false);
       await auth.signInWithEmailAndPassword(
           userSnapshot.data.trim(), passwordSnapshot.data.trim());
-    } on PlatformException catch (e) {
-      // hasError = true;
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
         setState(() {
           errorString = "Email address appears to be malformed/expired";
@@ -141,13 +139,7 @@ class _TextFieldExampleState extends State<TextFieldExample> {
               "Email has already been registered. Reset your password.";
         });
       }
-    } on Exception catch (e) {
-      print(e.toString());
     }
-    if (errorString != null) {
-      return Future.error(errorString);
-    }
-    return 'Success';
   }
 
   //Handle the string that needs to be inserted into the Error text widget
@@ -174,12 +166,7 @@ class _TextFieldExampleState extends State<TextFieldExample> {
         passwordSnapshot.data.trim().length >= 8 &&
         EmailValidator.validate(userSnapshot.data.trim())) {
           validate = true;
-          futureString = _signInWithEmailAndPassword(context, userSnapshot, passwordSnapshot);
-          futureString.then((String result) {
-            setState(() {
-              errorString = result;
-            });
-          });
+          _signInWithEmailAndPassword(context, userSnapshot, passwordSnapshot);
           if(errorString != "Success") {
             hasError = true;
             validate = true;

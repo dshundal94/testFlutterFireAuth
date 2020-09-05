@@ -11,32 +11,28 @@ class Background extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Center(
-                  child: Text(
-                    'WorkoutCapture',
-                  ),
-                ),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.black)),
-                  child: Text('LOGIN'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return LoginScreen();
-                      }),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
+        child: Center(
+          
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.black)),
+                child: Text('LOGIN'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return LoginScreen();
+                    }),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
