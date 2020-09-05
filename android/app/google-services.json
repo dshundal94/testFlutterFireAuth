@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "883593264215",
+    "firebase_url": "https://yaad-6bc82.firebaseio.com",
+    "project_id": "yaad-6bc82",
+    "storage_bucket": "yaad-6bc82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883593264215:android:6c32dbc41ba4fb945b7712",
+        "android_client_info": {
+          "package_name": "com.example.workout_capture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883593264215-2qrhdp9suflp8h3vhpa25qiakr1u4t1p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_yqpqjYvyZFB8SeU3m87T0iD1LQ__gm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883593264215-2qrhdp9suflp8h3vhpa25qiakr1u4t1p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
