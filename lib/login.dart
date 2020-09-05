@@ -37,7 +37,8 @@ class _TextFieldExampleState extends State<TextFieldExample> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(29),
           ),
-          //expose streambuilder to the column widget to use on multiple widgets
+          //expose streambuilder to the column widget to use on multiple widgets, doing this so I can change the 
+          //error messages dynamically and more personally
           child: StreamBuilder<String>(
               initialData: '',
               stream: _username.stream,
@@ -83,7 +84,7 @@ class _TextFieldExampleState extends State<TextFieldExample> {
                               ),
                             ),
                           ),
-                          //checking the stream and if the user clicked in the button and this shows container when keyboard is on
+                          //Error text widget,checking the stream and if the user clicked in the button and this shows container when keyboard is on
                           if (hasError && validate && MediaQuery.of(context).viewInsets.bottom == 0 && errorString.length > 0) 
                             Container(
                               alignment: Alignment.center,
@@ -102,7 +103,7 @@ class _TextFieldExampleState extends State<TextFieldExample> {
               })),
     );
   }
-
+  //return future string when there is error with the sign in otherwise return success future string 
   Future<String> _signInWithEmailAndPassword(BuildContext context,AsyncSnapshot<String> userSnapshot,AsyncSnapshot<String> passwordSnapshot) async {
     try {
       final auth = Provider.of<AuthService>(context, listen: false);
